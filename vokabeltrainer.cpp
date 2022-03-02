@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector> 
+#include <fstream>
+#include <iterator>
 
 using namespace std;
 
@@ -27,6 +29,16 @@ int main() {
         voc_spanish.push_back(spanish_word);
         cout << "Vokabel wurde hinzugefügt.\n";
         cout << "Hinzugefügte Vokabeln: " + to_string(voc_german.size());
+
+        // Deutsche Vokabeln speichern
+        ofstream output_file("./voc_german.txt");
+        ostream_iterator<string> output_iterator(output_file, "\n");
+        copy(voc_german.begin(), voc_german.end(), output_iterator);
+        
+        // Spanische Vokabeln speichern
+        ofstream output_file2("./voc_spanish.txt");
+        ostream_iterator<string> output_iterator2(output_file2, "\n");
+        copy(voc_spanish.begin(), voc_spanish.end(), output_iterator2);
 
 
     } else {
